@@ -27,7 +27,7 @@ public class ItemsController : ControllerBase
 
         if(item is null) return NotFound();
 
-        return item;
+        return Ok(item);
     }
 
     [HttpPost]
@@ -61,12 +61,10 @@ public class ItemsController : ControllerBase
 
     [HttpDelete("{id}")]
     public IActionResult Delete(Guid id)
-    {
-        var itemToDelete = items.Where(i => i.Id == id).SingleOrDefault();
-
-        if (itemToDelete is null) return NotFound();
-
+    {      
         var index = items.FindIndex(i => i.Id == id);
+
+        if(index < 0) return NotFound();
 
         items.RemoveAt(index);
 
