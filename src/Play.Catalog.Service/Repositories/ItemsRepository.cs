@@ -3,7 +3,7 @@ using Play.Catalog.Service.Entities;
 
 namespace Play.Catalog.Service.Repositories
 {
-    public class ItemsRepository
+    public class ItemsRepository : IItemsRepository
     {
         private const string collectionName = "items";
         private readonly IMongoCollection<Item> dbCollection;
@@ -30,14 +30,14 @@ namespace Play.Catalog.Service.Repositories
 
         public async Task CreateAsync(Item entity)
         {
-            if(entity is null) throw new ArgumentNullException(nameof(entity));
+            if (entity is null) throw new ArgumentNullException(nameof(entity));
 
             await dbCollection.InsertOneAsync(entity);
         }
 
         public async Task UpdateAsync(Item entity)
         {
-            if(entity is null) throw new ArgumentNullException(nameof(entity));
+            if (entity is null) throw new ArgumentNullException(nameof(entity));
 
             FilterDefinition<Item> filter = filterBuilder.Eq(i => i.Id, entity.Id);
             await dbCollection.ReplaceOneAsync(filter, entity);
@@ -47,7 +47,7 @@ namespace Play.Catalog.Service.Repositories
         {
             FilterDefinition<Item> filter = filterBuilder.Eq(i => i.Id, id);
 
-            await dbCollection.DeleteOneAsync(filter);   
+            await dbCollection.DeleteOneAsync(filter);
         }
 
     }
