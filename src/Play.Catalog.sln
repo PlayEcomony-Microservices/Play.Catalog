@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Service", "Play.Catalog.Service\Play.Catalog.Service.csproj", "{FD7C8948-D21C-46AF-807D-8570481161F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalogo.Test", "Play.Catalogo.Test\Play.Catalogo.Test.csproj", "{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{FD7C8948-D21C-46AF-807D-8570481161F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD7C8948-D21C-46AF-807D-8570481161F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD7C8948-D21C-46AF-807D-8570481161F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
