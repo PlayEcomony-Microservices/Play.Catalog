@@ -6,3 +6,6 @@ paid tutorial because it offers much more than the free tutorial.
   1. Kubernetes
   2. Docker with .NET
   3. Deploying Microservices with Kubernetes, docker and github actions with CI/CD to Azure Cloud
+  
+## Things I am adopting
+Writing unit tests and integration tests
