@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
+using Play.Catalog.Service.Entities;
 using Play.Catalog.Service.Repositories;
 
 namespace Play.Catalogo.Test.Data
@@ -22,7 +23,11 @@ namespace Play.Catalogo.Test.Data
                                     var mongoClient = new MongoClient("mongodb://localhost:27017");
                                     return mongoClient.GetDatabase("Catalog");
                                 });
-                                services.AddSingleton<IItemsRepository, ItemsRepository>();
+                                services.AddSingleton<IRepository<Item>>(serviceProvider =>
+                                {
+                                    var database = serviceProvider.GetService<IMongoDatabase>();
+                                    return new MongoRepository<Item>(database, "items");
+                                });
                             });
                         });
         }
@@ -33,7 +38,7 @@ namespace Play.Catalogo.Test.Data
             using (var scope = app.Services.CreateScope())
             {
                 var scopedServices = scope.ServiceProvider;
-                var itemsRepository = scopedServices.GetRequiredService<IItemsRepository>();
+                var itemsRepository = scopedServices.GetRequiredService<IRepository<Item>>();
 
                 var items = await itemsRepository.GetAllAsync();
 
