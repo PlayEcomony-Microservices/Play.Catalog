@@ -1,9 +1,9 @@
-using System.Collections.Immutable;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Repositories;
+using Play.Common;
+using Play.Common.MongoDB;
 
 namespace Play.Catalogo.Test.Data
 {
@@ -18,16 +18,7 @@ namespace Play.Catalogo.Test.Data
                         {
                             builder.ConfigureServices(services =>
                             {
-                                services.AddSingleton(serviceProvider =>
-                                {
-                                    var mongoClient = new MongoClient("mongodb://localhost:27017");
-                                    return mongoClient.GetDatabase("Catalog");
-                                });
-                                services.AddSingleton<IRepository<Item>>(serviceProvider =>
-                                {
-                                    var database = serviceProvider.GetService<IMongoDatabase>();
-                                    return new MongoRepository<Item>(database, "items");
-                                });
+                                services.AddMongo().AddMongoRepository<Item>("items");
                             });
                         });
         }

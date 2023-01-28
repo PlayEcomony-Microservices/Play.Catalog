@@ -19,6 +19,7 @@ namespace Play.Catalogo.Test.Controller
             var webAppFactory = new WebApplicationFactory<Program>();
             _httpClient = webAppFactory.CreateDefaultClient();
         }
+        
         [Fact]
         public async void Get_AllItems()
         {
