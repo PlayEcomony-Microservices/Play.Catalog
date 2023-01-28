@@ -1,9 +1,9 @@
-using System.Collections.Immutable;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Repositories;
+using Play.Common;
+using Play.Common.MongoDB;
 
 namespace Play.Catalogo.Test.Data
 {
