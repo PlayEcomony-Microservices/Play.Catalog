@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Service", "Pla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalogo.Test", "Play.Catalogo.Test\Play.Catalogo.Test.csproj", "{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play.Catalog.Contracts", "Play.Catalog.Contracts\Play.Catalog.Contracts.csproj", "{DAD0A1C1-900E-408F-9839-E9D2F9057048}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F9FFF02-231B-4190-A0BD-19F8A01F9A37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAD0A1C1-900E-408F-9839-E9D2F9057048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD0A1C1-900E-408F-9839-E9D2F9057048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD0A1C1-900E-408F-9839-E9D2F9057048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD0A1C1-900E-408F-9839-E9D2F9057048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
