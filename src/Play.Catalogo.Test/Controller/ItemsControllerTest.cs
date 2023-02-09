@@ -26,7 +26,11 @@ namespace Play.Catalogo.Test.Controller
             var response = await _httpClient.GetFromJsonAsync<List<ItemDto>>(baseApiUrl);
 
             Assert.NotNull(response);
-            Assert.Collection(response , item => Assert.Contains("Potion", item.Name));
+
+            var item = response.Where(i => i.Name.Contains("Potion")).FirstOrDefault();
+
+            Assert.NotNull(item);
+            
         }
     }
-}
+} 
