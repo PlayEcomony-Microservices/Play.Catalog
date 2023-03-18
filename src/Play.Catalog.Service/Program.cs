@@ -1,10 +1,12 @@
+using System.Collections.Immutable;
 using MassTransit;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Play.Catalog.Service.Entities;
+using Play.Common.Identity;
 using Play.Common.MassTransit;
 using Play.Common.MongoDB;
 using Play.Common.Settings;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -19,14 +21,9 @@ serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceS
 
 builder.Services.AddMongo()
                 .AddMongoRepository<Item>("items")
-                .AddMassTransitWithRabbitMq();
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => 
-                {
-                    options.Authority = "https://localhost:5003";
-                    options.Audience = serviceSettings.ServiceName;
-                });
+                .AddMassTransitWithRabbitMq()
+                .AddJwtBearerAuthentication();
+                
 
 builder.Services.AddControllers(options =>
 {
