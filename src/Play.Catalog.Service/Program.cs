@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
 using MassTransit;
 using Microsoft.OpenApi.Models;
+using Play.Catalog.Service;
 using Play.Catalog.Service.Entities;
 using Play.Common.Identity;
 using Play.Common.MassTransit;
@@ -23,7 +24,22 @@ builder.Services.AddMongo()
                 .AddMongoRepository<Item>("items")
                 .AddMassTransitWithRabbitMq()
                 .AddJwtBearerAuthentication();
-                
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Policies.Read, policy =>
+    {
+        policy.RequireRole("Admin");
+        policy.RequireClaim("scope", "catalog.readaccess", "catalog.fullaccess");
+    });
+
+    options.AddPolicy(Policies.Write, policy =>
+    {
+        policy.RequireRole("Admin");
+        policy.RequireClaim("scope", "catalog.writeaccess", "catalog.fullaccess");
+    });
+});
 
 builder.Services.AddControllers(options =>
 {
@@ -70,4 +86,4 @@ app.MapControllers();
 app.Run();
 
 
-public partial class Program {}
+public partial class Program { }
