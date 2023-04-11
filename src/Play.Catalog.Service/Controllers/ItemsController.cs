@@ -58,7 +58,7 @@ public class ItemsController : ControllerBase
         await itemsRepository.CreateAsync(item);
 
         //announce item has been created
-        await publishEndpoint.Publish(new CatalogItemCreated(item.Id, item.Name, item.Description));
+        await publishEndpoint.Publish(new CatalogItemCreated(item.Id, item.Name, item.Description, item.Price));
 
         return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
     }
@@ -78,7 +78,7 @@ public class ItemsController : ControllerBase
         await itemsRepository.UpdateAsync(existingItem);
 
         //announce item has been update
-        await publishEndpoint.Publish(new CatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
+        await publishEndpoint.Publish(new CatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description, existingItem.Price));
 
         return NoContent();
     }
