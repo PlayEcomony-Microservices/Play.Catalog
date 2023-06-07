@@ -5,12 +5,10 @@ A catalog microservice that hold catalog functionality. One of a few other micro
 ## Create and Publish Play.Catalog.Contracts package to GitHub
 
 ```powershell
-$version=1.0.1
+$version="1.0.2"
 $owner="PlayEcomony-Microservices"
 $gh_pat="[PAT HERE]"
-
 dotnet pack src\Play.Catalog.Contracts --configuration Release -p:PackageVersion=$version -p:RepositoryUrl=https://github.com/$owner/Play.Catalog -o ..\packages
-
 dotnet nuget push ..\packages\Play.Catalog.Contracts.$version.nupkg --api-key $gh_pat --source "github"
 ```
 
@@ -25,5 +23,7 @@ docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
 ## Run the docker image
 
 ```powershell
-docker run -it --rm -p 5000:5000 --name catalog -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq  --network playinfra_default play.catalog:$version
+$cosmosDbConnStr="[CONN STRING HERE]"
+$serviceBusConnString="[CONN STRING HERE]"
+docker run -it --rm -p 5000:5000 --name catalog -e MongoDbSettings__ConnectionString=$cosmosDbConnStr -e ServiceBusSettings__ConnectionString=$serviceBusConnString -e ServiceSettings__MessageBroker="SERVICEBUS" play.catalog:$version
 ```
