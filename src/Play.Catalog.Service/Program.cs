@@ -22,7 +22,7 @@ serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceS
 
 builder.Services.AddMongo()
                 .AddMongoRepository<Item>("items")
-                .AddMassTransitWithRabbitMq()
+                .AddMassTransitWithMessageBroker(Configuration)
                 .AddJwtBearerAuthentication();
 
 
