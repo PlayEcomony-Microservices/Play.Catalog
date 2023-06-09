@@ -1,6 +1,7 @@
 # PlayEconomy.Play.Catalog
 
 A catalog microservice to facilitate catalog functionality in Play Economy Microservice Architecture. 
+
 ## Create and Publish Play.Catalog.Contracts package to GitHub
 
 ```powershell
