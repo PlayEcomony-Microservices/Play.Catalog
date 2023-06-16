@@ -1,6 +1,6 @@
 # PlayEconomy.Play.Catalog
 
-A catalog microservice to facilitate catalog functionality in Play Economy Microservice Architecture. 
+A catalog microservice to facilitate catalog functionality in Play Economy Microservice Architecture.
 
 ## Create and Publish Play.Catalog.Contracts package to GitHub
 
@@ -34,4 +34,23 @@ docker run -it --rm -p 5000:5000 --name catalog -e MongoDbSettings__ConnectionSt
 ```powershell
 az acr login --name $acrName
 docker push "$acrName.azurecr.io/play.catalog:$version"
+```
+
+## Create the Kubernetes namespace
+
+```powershell
+$namespace="catalog"
+kubectl create namespace $namespace
+```
+
+## Create the Kubernetes secrets
+
+```powershell
+kubectl create secret generic catalog-secrets --from-literal=cosmosdb-connectionstring=$cosmosDbConnStr --from-literal=servicebus-connectionstring=$serviceBusConnString --from-literal=admin-password=$adminPass -n $namespace
+```
+
+## Create the Kubernetes pod
+
+```powershell
+kubectl apply -f .\kubernetes\catalog.yaml -n $namespace
 ```
