@@ -3,6 +3,7 @@ using MassTransit;
 using Microsoft.OpenApi.Models;
 using Play.Catalog.Service;
 using Play.Catalog.Service.Entities;
+using Play.Common.HealthChecks;
 using Play.Common.Identity;
 using Play.Common.MassTransit;
 using Play.Common.MongoDB;
@@ -53,6 +54,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Play.Catalog.Service", Version = "v1" });
 });
 
+builder.Services.AddHealthChecks().AddMongoDb();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -82,6 +85,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapPlayEconomyHealthChecks();
 
 app.Run();
 
