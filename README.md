@@ -5,7 +5,7 @@ A catalog microservice to facilitate catalog functionality in Play Economy Micro
 ## Create and Publish Play.Catalog.Contracts package to GitHub
 
 ```powershell
-$version="1.0.2"
+$version="1.0.3"
 $owner="PlayEcomony-Microservices"
 $gh_pat="[PAT HERE]"
 dotnet pack src\Play.Catalog.Contracts --configuration Release -p:PackageVersion=$version -p:RepositoryUrl=https://github.com/$owner/Play.Catalog -o ..\packages
